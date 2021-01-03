@@ -15,7 +15,7 @@ This is already included in the example `values.yaml`
 ```
 servers:
 - zones:
-  - zone: example.org
+  - zone: example.org.
   port: 53
   plugins:
   - name: errors
@@ -26,9 +26,9 @@ servers:
   # Serves a /ready endpoint on :8181, required for readinessProbe
   - name: ready
   - name: forward
-    parameters: example.org 1.1.1.1:53
+    parameters: . 1.1.1.1:53
 - zones:
-  - zone: wikipedia.org
+  - zone: wikipedia.org.
   port: 53
   plugins:
   - name: errors
@@ -37,7 +37,7 @@ servers:
       lameduck 5s
   - name: ready
   - name: forward
-    parameters: wikipedia.org 8.8.8.8:53
+    parameters: . 8.8.8.8:53
 ```
 
 ## Install chart
@@ -48,7 +48,7 @@ helm upgrade -i dns-forwarder coredns/coredns --version 1.14.0 -f values.yaml
 ## Test
 Start a test pod
 ```
-kubectl run -it --rm --restart=Never --image=alpine:3.12 connect -- ash
+kubectl run -it --rm --restart=Never --image=alpine:3.12 connect -- sh
 ```
 
 You should be able to resolve `example.org` and `wikipedia.org` using the newly deployed CoreDNS
