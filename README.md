@@ -57,3 +57,13 @@ nslookup example.org dns-forwarder-coredns.dns.svc.cluster.local
 nslookup wikipedia.org dns-forwarder-coredns.dns.svc.cluster.local
 nslookup en.wikipedia.org dns-forwarder-coredns.dns.svc.cluster.local
 ```
+
+## Local deployment with Docker
+For a quick local deployment using Docker, create a Corefile under `/home/$USER/coredns/` and run
+```
+docker run -d --name coredns --restart=always --volume=/home/$USER/coredns/:/root/ -p 8053:53/udp coredns/coredns -conf /root/Corefile
+```
+And a query to check if it's working as expected
+```
+dig example.org @127.0.0.1 -p 8053
+```

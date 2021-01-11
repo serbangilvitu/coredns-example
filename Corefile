@@ -1,0 +1,16 @@
+example.org.:53 {
+    errors
+    health {
+        lameduck 5s
+    }
+    ready
+    forward . 1.1.1.1:53
+}
+wikipedia.org.:53 {
+    errors
+    health {
+        lameduck 5s
+    }
+    ready
+    forward . 8.8.8.8:53
+}
